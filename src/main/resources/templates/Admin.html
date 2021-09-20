@@ -1,0 +1,126 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      />
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-center text-white"><h3>Welcome to Admin Page</h3></div>
+        <div class="card-body">
+            <form id="adminreg" action="save" method="POST">
+<div class="row">
+<div class="col-2"><label>CODE</label></div>
+<div class="col-6"><input type="text" name="code" id=code class="form-control"/></div>
+<div class="col-4"><span id="codeError"></span></div>
+</div>
+<div class="row">
+<div class="col-2"><label>NAME</label></div>
+<div class="col-6"><input type="text" name="name" id="name" class="form-control"></div>
+<div class="col-4"><span id="nameError"></span></div>
+</div>
+<div class="row">
+<div class="col-2"><label>NOTE</label></div>
+<div class="col-6"><input type="text" name="note" id="note" class="form-control"></div>
+<div class="col-4"><span id="noteError"></span></div>
+</div>
+<button class="btn btn-danger">CREATE</button>
+<a th:href="@{/admin/excel}" class="btn btn-warning">EXCEL</a>
+        </div>
+    </form>
+        <div th:text="${message}"class="card-footer bg-primary text-center text-white"><h4></h4></div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+	
+	$("#codeError").hide();
+	$("#nameError").hide();
+	$("#noteError").hide();
+	
+	var codeError=false;
+	var nameError=false;
+	var noteError=false;
+	
+	function validate_code()
+	{
+		var val=$("#code").val();
+		if(val=="")
+		{
+			$("#codeError").show();
+			$("#codeError").html("*Please Enter Code");
+			$("#codeError").css('color','red');
+			codeError=false;
+		}
+		else{
+			
+			$("#codeError").hide();
+			codeError=true;
+			
+		}
+		
+		return codeError;
+	}
+	function validte_name()
+	{   
+           var val=$("#name").val();
+           if(val=="")
+           {
+               $("#nameError").show();
+               $("#nameError").html("*please Enter Name");
+               $("#nameError").css('color','red');
+               nameError=false;
+           } else{
+               $("#nameError").hide();
+               nameError=true;
+           }
+           return nameError;
+
+	}
+	function validate_note()
+	{
+        var val=$("#note").val();
+        if(val=="")
+        {
+            $("#noteError").show();
+            $("#noteError").html("*please Ente Note");
+            $("#noteError").css('color','red');
+            noteError=false;
+        }
+        else
+        {
+            $("#noteError").hide();
+            noteError=true;
+        }
+		return noteError;
+	}
+	
+	$("#code").keyup(function(){
+		
+		validate_code();
+		
+	});
+	$("#name").keyup(function(){
+		validate_name();
+	});
+	$("#note").keyup(function(){
+		validate_note();	
+	});
+	
+	$("#adminreg").submit(function(){
+		validate_code();
+		validate_name();
+		validate_note();
+		if(codeError && nameError && noteError)
+		return true; else return false;
+	});
+});
+
+</script>
+</body>
+</html>

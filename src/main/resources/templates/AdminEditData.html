@@ -1,0 +1,42 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+      .row{padding: 5px;}
+
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="card-header bg-secondary text-center text-white"><h3>Welcome to Edit Page</h3></div>
+<div class="card-body">
+    <form th:action="@{/admin/update}" method="POST" th:object="${admin}">
+    <div class="row">
+        <div class="col-2"><label>ID</label></div>
+        <div class="col-6"><input type="text" th:field="*{id}" id="id" class="form-control" readonly></div>
+        <div class="col-4"><span></span></div>
+    </div>
+    <div class="row">
+        <div class="col-2"><label>CODE</label></div>
+        <div class="col-6"><input type="text" th:field="*{code}" id="code" class="form-control"></div>
+        <div class="col-4"><span></span></div>
+    </div>
+    <div class="row">
+    <div class="col-2"><label>NAME</label></div>
+    <div class="col-6"><input type="text" th:field="*{name}" id="name" class="form-control"></div>
+    <div class="col-4"><span></span></div>
+    </div>
+    <div class="row">
+        <div class="col-2"><label>NOTE</label></div>
+        <div class="col-6"><input type="text" th:field="*{note}" id="note" class="form-control"></div>
+        <div class="col-4"><span></span></div>
+    </div>
+    <input type="submit" value="UPDATE" class="btn btn-secondary">
+    </form>
+</div>
+<div th:text="${message}"class="card-footer bg-secondary text-white text-center"></div>
+</div>
+</div>
+</body>
+</html>

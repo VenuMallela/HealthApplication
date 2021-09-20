@@ -1,0 +1,30 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container">
+<div class="card">
+<div class="card-header bg-primary text-white text-center"><h2>Admin Data</h2></div>
+<div class="card-body">
+<table class="table table-hover">
+<tr class="bg-primary text-center text-white">
+    <th>ID</th>
+    <th>CODE</th>
+    <th>NAME</th>
+    <th>NOTE</th>
+    <th>OPERATIONS</th>
+</tr>
+<tr th:each="obj:${list}" class="text-center">
+<td th:text="${obj.id}"></td>
+<td th:text="${obj.code}"></td>
+<td th:text="${obj.name}"></td>
+<td th:text="${obj.note}"></td>
+<td><a th:href="@{/admin/delete(id=${obj.id})}" class="btn btn-danger">DELETE</a>
+    <a th:href="@{/admin/edit(id=${obj.id})}" class="btn btn-warning">EDIT</a></td>
+</tr>
+</table>
+</div>
+<div th:text="${message}"class="card-footer bg-primary text-center text-white"></div>
+</body>
+</html>
